@@ -1,5 +1,7 @@
 import subprocess
 import sys
+import numpy
+import csv
 
 if __name__=='__main__':
     file = sys.argv[1]
@@ -7,6 +9,12 @@ if __name__=='__main__':
     result = subprocess.check_output(['readelf', '-Ws', file])
     print ("readelf -Ws "+file+"result is :")
     print (result)
-    symbolArray = result.decode('utf-8').split('\n')[3:]
+    symbolArray = result.decode('utf-8').split('\n')[2:]
     print("first line:")
     print(symbolArray[0])
+    write_file = "output.csv"
+    with open(write_file, "w") as output:
+        for line in symbolArray:
+           csvLine = ','.join(line.split()) 
+           print(csvLine)
+           output.write(csvLine + '\n')  
