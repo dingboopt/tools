@@ -1,3 +1,4 @@
+import pandas as pd
 import subprocess
 import sys
 import numpy
@@ -15,6 +16,8 @@ if __name__=='__main__':
     write_file = "output.csv"
     with open(write_file, "w") as output:
         for line in symbolArray:
-           csvLine = ','.join(line.split()) 
-           print(csvLine)
-           output.write(csvLine + '\n')  
+            csvLine = ','.join(line.split()[:8]) 
+            print(csvLine)
+            output.write(csvLine + '\n')  
+    df = pd.read_csv("output.csv")
+    print(df.head())
