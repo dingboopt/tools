@@ -16,7 +16,12 @@ if __name__=='__main__':
     write_file = "output.csv"
     with open(write_file, "w") as output:
         for line in symbolArray:
-            csvLine = ','.join(line.split()[:8]) 
+            splitLine = line.split() 
+            if splitLine == []:
+                continue
+            print(splitLine[0])
+            splitLine[0] = splitLine[0][:-1]
+            csvLine = ','.join(splitLine[:8]) 
             print(csvLine)
             output.write(csvLine + '\n')  
     df = pd.read_csv("output.csv")
