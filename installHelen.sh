@@ -11,7 +11,7 @@ echo 'Acquire::http::Proxy "false";' > /etc/apt/apt.conf
 
 apt update
 sudo apt-get -y install python build-essential libgmp-dev libmpfr-dev ppl-dev libmpc-dev zlib1g-dev texinfo libtinfo-dev xutils-dev bison flex
-cd HelenOS/tools
+cd helenoS/tools
 ./toolchain.sh amd64
 cd ..
 make PROFILE=amd64
