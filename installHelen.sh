@@ -10,7 +10,7 @@ fi
 echo 'Acquire::http::Proxy "false";' > /etc/apt/apt.conf
 
 apt update
-sudo apt-get install python build-essential libgmp-dev libmpfr-dev ppl-dev libmpc-dev zlib1g-dev texinfo libtinfo-dev xutils-dev bison flex
+sudo apt-get -y install python build-essential libgmp-dev libmpfr-dev ppl-dev libmpc-dev zlib1g-dev texinfo libtinfo-dev xutils-dev bison flex
 cd HelenOS/tools
 ./toolchain.sh amd64
 cd ..
