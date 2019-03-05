@@ -1,0 +1,1 @@
+docker run --privileged --cap-add SYS_ADMIN --security-opt seccomp:unconfined  -it   --name autosar -v /root/.ssh/:/root/.ssh/ -v /workspace/:/workspace/ -v /etc/apt:/etc/apt ubuntu bash
