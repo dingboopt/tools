@@ -1,0 +1,6 @@
+Without console:
+qemu-system-arm   -kernel boot/boot/kernel7.img -m 1024 -M raspi2      -serial stdio -append "rw root=PARTUUID=3b18e43a-02 rootwait fsck.repair=yes memtest=1"   -drive file=2019-07-10-raspbian-buster.img   -netdev user,id=net0,hostfwd=tcp::5022-:22  -dtb boot/boot/bcm2710-rpi-3-b-plus.dtb   -no-reboot
+
+console:
+
+qemu-system-arm   -kernel boot/boot/kernel7.img -m 1024 -M raspi2      -serial stdio -append "rw root=PARTUUID=3b18e43a-02 console=ttyAMA0 loglevel=8 rootwait fsck.repair=yes memtest=1"   -drive file=2019-07-10-raspbian-buster.img   -netdev user,id=net0,hostfwd=tcp::5022-:22  -dtb boot/boot/bcm2710-rpi-3-b-plus.dtb   -no-reboot
