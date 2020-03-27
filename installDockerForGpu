@@ -1,0 +1,37 @@
+#!/bin/bash
+set -x
+apt -y remove docker docker-engine docker.io
+unset http_proxy
+unset https_proxy
+unset ftp_proxy
+
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+export http_proxy=http://10.173.243.221:8082/
+export https_proxy=http://10.173.243.221:8082/
+export ftp_proxy=http://10.173.243.221:8082/
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+echo "Acquire::http::Proxy::nvidia.github.io \"http://10.173.243.221:8082/\";" | sudo tee /etc/apt/apt.conf.d/01proxy
+echo "Acquire::http::Proxy::download.docker.com \"http://10.173.243.221:8082/\";" >> /etc/apt/apt.conf.d/01proxy
+unset http_proxy
+unset https_proxy
+unset ftp_proxy
+
+apt-get update
+apt-get install -y nvidia-container-toolkit
+systemctl restart docker
+
+apt update
+apt install -y apt-transport-https software-properties-common ca-certificates curl wget
+export http_proxy=http://10.173.243.221:8082/
+export https_proxy=http://10.173.243.221:8082/
+export ftp_proxy=http://10.173.243.221:8082/
+wget https://download.docker.com/linux/ubuntu/gpg 
+unset http_proxy
+unset https_proxy
+unset ftp_proxy
+apt-key add gpg
+
+apt update
+apt install -y docker-ce
