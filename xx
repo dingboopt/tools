@@ -1,0 +1,84 @@
+def Cal(op1, op2, op):
+    if op == '+':
+        return op1 + op2
+    elif op == '-':
+        return op1 - op2
+    elif op == '*':
+        return op1 * op2
+    elif op == '/':
+        return op1 / op2
+
+def CalUtil(exp):
+    ops = list()
+    ops.append("(")
+    operators = list()
+    isOp = False
+    result = 0;
+    j = 0
+    for i in range(len(exp)):
+        char = exp[i]
+        # an op found
+        if char == '(':
+            ops.append(char);
+            isOp = True
+        elif char == ')':
+            op = ops[-1:]
+            while op!= '(':
+                op = ops.pop()
+                if op == '(':
+                    break
+                op2 = operators.pop()
+                op1 = operators.pop()
+                result = result + Cal(op1, op2, op)
+            # pop (
+            ops.pop()
+            isOp = True
+
+        # + - case
+        elif char == '-' or char == '+' :
+            if ops[-1] == '(':
+                operators.append(0)
+            op = ops[-1:]
+            while op == '*' or op == '/':
+                op = ops.pop()
+                op2 = operators.pop()
+                op1 = operators.pop()
+                result = result + Cal(op1, op2, op)
+            ops.append(char)
+            isOp = True
+        elif (char == '*') or (char == '/') :
+            ops.append(char)
+            isOp = True
+        else:
+            isOp = False
+        if isOp:
+            if j<i :
+                operators.append(float(exp[j:i]))
+            j = i + 1
+
+        if not isOp and i == len(exp) - 1:
+            operators.append(float(exp[j:]))
+
+    while len(operators) > 1:
+        op = ops.pop()
+        op2 = operators.pop()
+        op1 = operators.pop()
+        result = result + Cal(op1, op2, op)
+
+    return result
+
+
+def func():
+    # please define the python3 input here. 
+    # For example: a,b = map(int, input().strip().split())
+    while True:
+        exp = input()
+        if exp is '0':
+            break
+        print("{0:.2f}".format(CalUtil(exp)))
+    # please finish the function body here.
+    # please define the python3 operators here. For example: print().
+
+    
+if __name__ == "__main__":
+    func()
