@@ -8,6 +8,7 @@ def Cal(op1, op2, op):
     elif op == '/':
         return op1 / op2
 
+
 def CalUtil(exp):
     ops = list()
     ops.append("(")
@@ -23,36 +24,40 @@ def CalUtil(exp):
             isOp = True
         elif char == ')':
             op = ops[-1:]
-            while op!= '(':
+            if j < i:
+                operators.append(float(exp[j:i]))
+                j = i+1
+
+            while op != '(':
                 op = ops.pop()
                 if op == '(':
                     break
                 op2 = operators.pop()
                 op1 = operators.pop()
-                result = result + Cal(op1, op2, op)
-            # pop (
-            ops.pop()
+                result = Cal(op1, op2, op)
+                operators.append(result)
             isOp = True
 
         # + - case
-        elif char == '-' or char == '+' :
-            if ops[-1] == '(':
+        elif char == '-' or char == '+':
+            if exp[i-1:i] == '(':
                 operators.append(0)
             op = ops[-1:]
             while op == '*' or op == '/':
                 op = ops.pop()
                 op2 = operators.pop()
                 op1 = operators.pop()
-                result = result + Cal(op1, op2, op)
+                result = Cal(op1, op2, op)
+                operators.append(result)
             ops.append(char)
             isOp = True
-        elif (char == '*') or (char == '/') :
+        elif (char == '*') or (char == '/'):
             ops.append(char)
             isOp = True
         else:
             isOp = False
         if isOp:
-            if j<i :
+            if j < i:
                 operators.append(float(exp[j:i]))
             j = i + 1
 
@@ -63,9 +68,9 @@ def CalUtil(exp):
         op = ops.pop()
         op2 = operators.pop()
         op1 = operators.pop()
-        result = result + Cal(op1, op2, op)
+        operators.append(Cal(op1, op2, op))
 
-    return result
+    return operators[0]
 
 
 def func():
@@ -73,13 +78,13 @@ def func():
     # For example: a,b = map(int, input().strip().split())
     while True:
         exp = input()
-        if exp is '0':
+        if exp == '0':
             break
         print("{0:.2f}".format(CalUtil(exp)))
     # please finish the function body here.
     # please define the python3 operators here. For example: print().
 
-    
+
 if __name__ == "__main__":
     func()
-#5.6*(-2*(1+(-3)))
+# 5.6*(-2*(1+(-3)))
