@@ -1,1 +1,3 @@
 docker run --privileged --cap-add SYS_ADMIN --security-opt seccomp:unconfined  -it    -v /root/.ssh/:/root/.ssh/ -v /workspace/:/workspace/ -v /etc/apt:/etc/apt --name git ubuntu bash
+#for vim in docker
+docker run --privileged --cap-add SYS_ADMIN --security-opt seccomp:unconfined   -it --network host  -e DISPLAY=$DISPLAY  -v $HOME/.Xauthority:/root/.Xauthority --name sb xxx/ide:vim  bash
