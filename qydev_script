@@ -1,9 +1,0 @@
-#!bin/bash
-sleep 10
-while true
-do
-  ./qydev_linux_arm -k ng2d68ns01 &
-  sleep 30
-  pkill qydev_linux_arm
-  sleep 10
-done
