@@ -1,0 +1,16 @@
+#/etc/systemd/system/qydev.service
+[Unit]
+Description=qydev
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/qydev_linux_arm  -k xupulqk6tq
+#RemainAfterExit=no
+#Restart=always
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill -9 $MAINPID
+Restart=on-failure
+RestartSec=20s
+
+[Install]
+WantedBy=default.target
