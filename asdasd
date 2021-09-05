@@ -20,3 +20,4 @@ docker pull nvidia/cuda:10.2-cudnn8-devel-ubuntu18.04
 https://share.weiyun.com/DHZmoN8A
 calibration --model pre_model/ResNet-50-multiInput.prototxt --weights pre_model/ResNet-50-model.caffemodel --save_path ./results/resnet50_multi --evaluator evaluator.py
 https://dokumen.pub/download/machine-learning-a-bayesian-and-optimization-perspective-2nbsped-0128188030-9780128188033.html
+docker pull pytorch/pytorch:1.9.0-cuda10.2-cudnn7-runtime
