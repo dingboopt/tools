@@ -22,3 +22,5 @@ calibration --model pre_model/ResNet-50-multiInput.prototxt --weights pre_model/
 https://dokumen.pub/download/machine-learning-a-bayesian-and-optimization-perspective-2nbsped-0128188030-9780128188033.html
 docker pull pytorch/pytorch:1.9.0-cuda10.2-cudnn7-runtime
 https://www.cnblogs.com/lincz/p/12562569.html
+https://geo.mydati.com/download/hss-win2/HSS-773.exe?cid=ko_b71161c6aacf91b93
+https://assets.totallyacdn.com/desktop/win/Windscribe.exe
