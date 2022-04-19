@@ -1,0 +1,6 @@
+find /etc/yum.repos.d/* -exec sed -i  "s/#baseurl/baseurl/g"  {} \; 
+find /etc/yum.repos.d/* -exec sed -i  "s/#baseurl/baseurl/g"  {} \; 
+find /etc/yum.repos.d/* -exec sed -i   "s/metalink/#metalink/g"  {} \; 
+find /etc/yum.repos.d/* -exec sed -i    "s@http://download.example/pub/fedora/linux/@https://mirrors.tools.huawei.com/fedora/@g"  {} \; 
+find /etc/yum.repos.d/* -exec sed -i  's/gpgcheck=1/gpgcheck=0\nsslverify=false/g' {} \; 
+find /etc/yum.repos.d/* -exec sed -i  's/gpgcheck=0/gpgcheck=0\nsslverify=false/g' {} \; 
