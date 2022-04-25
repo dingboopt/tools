@@ -1,6 +1,39 @@
+cp -rf /etc/yum.repos.d/ /etc/yum.repos.d.bak
 find /etc/yum.repos.d/* -exec sed -i  "s/#baseurl/baseurl/g"  {} \; 
 find /etc/yum.repos.d/* -exec sed -i  "s/#baseurl/baseurl/g"  {} \; 
 find /etc/yum.repos.d/* -exec sed -i   "s/metalink/#metalink/g"  {} \; 
 find /etc/yum.repos.d/* -exec sed -i    "s@http://download.example/pub/fedora/linux/@https://mirrors.tools.huawei.com/fedora/@g"  {} \; 
 find /etc/yum.repos.d/* -exec sed -i  's/gpgcheck=1/gpgcheck=0\nsslverify=false/g' {} \; 
 find /etc/yum.repos.d/* -exec sed -i  's/gpgcheck=0/gpgcheck=0\nsslverify=false/g' {} \; 
+
+
+[root@localhost-live fd]# cat /etc/yum.repos.d/fedora-cisco-openh264.repo 
+[fedora-cisco-openh264]
+name=Fedora $releasever openh264 (From Cisco) - $basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-cisco-openh264-$releasever&arch=$basearch
+type=rpm
+enabled=1
+metadata_expire=14d
+repo_gpgcheck=0
+sslverify=false
+gpgcheck=0
+sslverify=false
+sslverify=false
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+skip_if_unavailable=True
+proxy=http://10.174.154.170:8082/
+
+[fedora-cisco-openh264-debuginfo]
+name=Fedora $releasever openh264 (From Cisco) - $basearch - Debug
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-cisco-openh264-debug-$releasever&arch=$basearch
+type=rpm
+enabled=0
+metadata_expire=14d
+repo_gpgcheck=0
+sslverify=false
+gpgcheck=0
+sslverify=false
+sslverify=false
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
+skip_if_unavailable=True
+proxy=http://10.174.154.170:8082/
