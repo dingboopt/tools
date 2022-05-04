@@ -53,7 +53,7 @@ pacman -S spice-vdagent
 pacman -S xorg
 pacman -S xf86-video-intel
 pacman -S intel-ucode
-pacman -S konsole libdbusmenu-glib plasma plasma-wayland-session kde-applications 
+pacman -S konsole libdbusmenu-glib plasma plasma-wayland-session kde-applications // pacman -S cutefish
 systemctl enable sddm.service
 systemctl enable NetworkManager.service
 
