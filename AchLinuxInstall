@@ -49,7 +49,7 @@ reboot
 
 
 ///////安装kde
-
+pacman -S spice-vdagent
 pacman -S xorg
 pacman -S xf86-video-intel
 pacman -S intel-ucode
