@@ -46,3 +46,18 @@ passwd
 exit
 umount -R /mnt
 reboot
+
+
+///////安装kde
+
+pacman -S xorg
+pacman -S xf86-video-intel
+pacman -S intel-ucode
+pacman -S konsole libdbusmenu-glib plasma plasma-wayland-session kde-applications 
+systemctl enable sddm.service
+systemctl enable NetworkManager.service
+
+useradd -m -G wheel -s /bin/bash arch
+passwd arch
+
+reboot
