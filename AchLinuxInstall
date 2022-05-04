@@ -1,0 +1,48 @@
+timedatectl set-ntp true
+fdisk /dev/sda
+mkfs.ext4 /dev/sda1
+
+//添加源
+Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+
+mount /dev/sda1 /mnt
+
+pacstrap /mnt base linux linux-firmware base-devel
+//生产挂载配置
+genfstab -U /mnt >> /mnt/etc/fstab
+
+arch-chroot /mnt
+
+pacman -S vim iwd networkmanager ttf-dejavu sudo bluez dhcpcd openssh
+
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+hwclock --systohc
+
+echo arch > /etc/hostname
+
+vim /etc/locale.gen
+删除【en_US.UTF-8】和【zh_CN.UTF-8】两项前面的“#”，保存
+locale-gen
+echo LANG=en_US.UTF-8 >> /etc/locale.conf
+
+vim /etc/hosts
+
+127.0.0.1 localhost
+
+::1 localhost
+
+127.0.1.1 <你的主机名>.localdomain <你的主机名>
+
+systemctl enable dhcpcd
+systemctl enable sshd
+
+pacman -S grub os-prober
+grub-install /dev/sd
+grub-mkconfig -o /boot/grub/grub.cfg
+
+passwd
+
+exit
+umount -R /mnt
+reboot
