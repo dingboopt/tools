@@ -34,6 +34,7 @@ vim /etc/hosts
 
 systemctl enable dhcpcd
 systemctl enable sshd
+//ssh 修改配置允许root登陆
 
 pacman -S grub os-prober
 grub-install /dev/sda
